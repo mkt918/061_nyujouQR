@@ -47,24 +47,32 @@ function onFormSubmit(e) {
     ticketId: ticketId
   });
   
-  // Google Chart API を使ってQRコード画像URLを生成 (300x300サイズ)
-  var qrCodeUrl = "https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=" + encodeURIComponent(qrData);
+  // 改善版：画像がより表示されやすい QuickChart を使用
+  var qrCodeUrl = "https://quickchart.io/qr?size=300&text=" + encodeURIComponent(qrData);
   
   var subject = "【入場受付】入場用QRコード（チケット）のご案内";
   var body = parentName + " 様\n\n" +
              "ご登録ありがとうございます。\n当日の入場時にご提示いただくQRコードを発行いたしました。\n\n" +
              "・出席番号: " + studentId + "\n" +
              "・続柄: " + relation + "\n\n" +
-             "受付窓口にて、以下のURLのリンク先にあるQRコードをご提示ください。\n" +
+             "以下のURLからQRコードを表示し、受付で提示してください。\n" +
              qrCodeUrl + "\n\n" +
-             "----------------------------------\n" +
-             "※このメールは自動送信システムより送信されています。";
+             "※画像が表示されない場合は、上記のURLをブラウザで開いてください。";
              
-  var htmlBody = "<p>" + parentName + " 様</p><p>ご登録ありがとうございます。<br>当日の入場時にご提示いただくQRコードを発行いたしました。</p>" +
-                 "<ul><li><b>出席番号:</b> " + studentId + "</li><li><b>続柄:</b> " + relation + "</li></ul>" +
-                 "<p>受付窓口にて、以下のQRコードをご提示ください。</p>" +
-                 "<p><img src='" + qrCodeUrl + "' alt='QR Code'></p>" +
-                 "<hr><p><small>※このメールは自動送信システムより送信されています。</small></p>";
+  var htmlBody = "<div style='font-family:sans-serif; max-width:500px; border:1px solid #eee; padding:20px; border-radius:10px;'>" +
+                 "<h2>入場チケット</h2>" +
+                 "<p><b>" + parentName + " 様</b></p>" +
+                 "<p>ご登録ありがとうございます。当日の入場時にご提示いただくQRコードを発行いたしました。</p>" +
+                 "<div style='background:#f9f9f9; padding:15px; border-radius:10px; margin:20px 0; text-align:center;'>" +
+                 "<img src='" + qrCodeUrl + "' width='250' height='250' style='display:block; margin:0 auto;' alt='QR Code'>" +
+                 "</div>" +
+                 "<ul style='list-style:none; padding:0;'>" +
+                 "<li><b>出席番号:</b> " + studentId + "</li>" +
+                 "<li><b>続柄:</b> " + relation + "</li>" +
+                 "</ul>" +
+                 "<p style='font-size:12px; color:#888; border-top:1px solid #eee; padding-top:10px;'>" +
+                 "チケットID: " + ticketId + "<br>※このメールは自動送信されています。</p>" +
+                 "</div>";
                  
   // 指定されたメールアドレスに送信
   if (email) {

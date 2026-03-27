@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gh run list --limit 5)",
+      "Bash(gh run list --limit 3)",
+      "Bash(gh run watch 23628798814 --exit-status)",
+      "Bash(gh run view 23628798814 --log-failed)",
+      "Bash(gh run view 23628798814)",
+      "Bash(git ls-tree -r origin/master --name-only)",
+      "Bash(gh workflow list)",
+      "Bash(gh run watch 23628923621 --exit-status)"
+    ]
+  }
+}
