@@ -28,7 +28,7 @@ let html5QrCode = null;
 let isScanning = false;
 
 // Load config from LocalStorage
-apiUrlInput.value = localStorage.getItem('qr_api_url') || '';
+apiUrlInput.value = localStorage.getItem('qr_api_url') || 'https://script.google.com/macros/s/AKfycbzNyZbSEOClcVRiJs_evb2kIHT9lz8d1tSGB8aLW7ow0aQsMeKcou0S-jCwf5ymW0qTtA/exec';
 maxLimitInput.value = localStorage.getItem('qr_max_limit') || '2';
 
 saveSettingsBtn.addEventListener('click', () => {
